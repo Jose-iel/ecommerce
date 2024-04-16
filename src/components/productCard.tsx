@@ -1,15 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
 
-interface ProductCardProps {
-  href: string;
-  src: string;
-  name: string;
-  price: string;
+export interface ProductCardProps {
+  id?: number;
+  slug: string;
+  image: string;
+  title: string;
+  price: number;
   isHighlighted?: boolean;
+  featured?: boolean;
 }
 
-export default function ProductCard({href, src, name, price, isHighlighted}: ProductCardProps) {
+export default function ProductCard({slug, image, title, price, isHighlighted}: ProductCardProps) {
 
   const cardStyle = `
     ${isHighlighted ? 'col-span-6 row-span-6' : 'col-span-3 row-span-3'} 
@@ -23,12 +25,12 @@ export default function ProductCard({href, src, name, price, isHighlighted}: Pro
 
   return (
     <Link
-      href={href}
+      href={slug}
       className={cardStyle}
     >
       <Image
         className="group-hover:scale-105 transition-transform duration-500"
-        src={src}
+        src={image}
         width={920}
         height={920}
         quality={100}
@@ -37,7 +39,7 @@ export default function ProductCard({href, src, name, price, isHighlighted}: Pro
 
       <div className={priceBoxStyle}>
         <span className="text-sm truncate">
-          {name}
+          {title}
         </span>
 
         <span className="flex h-full items-center justify-center rounded-full bg-violet-500 px-4 font-semibold">
