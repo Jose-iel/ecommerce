@@ -1,12 +1,24 @@
-import ProductCard, { ProductCardProps } from "@/components/productCard";
+import ProductCard from "@/components/productCard";
+import { api } from "@/data/api";
+import { ProductProps } from "@/data/types/product";
+
+async function getFeaturedProducts(): Promise<ProductProps[]> {
+  const response = await api("/products/featured", {
+    next: {
+      revalidate: 60 * 60,
+    }
+  });
+  const products = await response.json();
+  return products;
+}
 
 export default async function Home() {
 
-  const products = await fetch("http://localhost:3000/api/products").then(res => res.json());
+  const products = await getFeaturedProducts();
 
   return (
     <div className="grid max-h-[860px] grid-cols-9 grid-rows-6 gap-6">
-      {products.map((product: ProductCardProps) => 
+      {products.map((product: ProductProps) => 
         <ProductCard
           key={product.id}
           title={product.title}

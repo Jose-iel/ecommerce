@@ -1,17 +1,8 @@
+import { ProductProps } from "@/data/types/product";
 import Image from "next/image";
 import Link from "next/link";
 
-export interface ProductCardProps {
-  id?: number;
-  slug: string;
-  image: string;
-  title: string;
-  price: number;
-  isHighlighted?: boolean;
-  featured?: boolean;
-}
-
-export default function ProductCard({slug, image, title, price, isHighlighted}: ProductCardProps) {
+export default function ProductCard({slug, image, title, price, isHighlighted}: ProductProps) {
 
   const cardStyle = `
     ${isHighlighted ? 'col-span-6 row-span-6' : 'col-span-3 row-span-3'} 
