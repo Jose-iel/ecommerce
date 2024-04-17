@@ -1,23 +1,17 @@
 import { ProductProps } from "@/data/types/product";
 import Image from "next/image";
 import Link from "next/link";
+import { twMerge } from "tailwind-merge";
 
 export default function ProductCard({slug, image, title, price, isHighlighted}: ProductProps) {
 
-  const cardStyle = `
-    ${isHighlighted ? 'col-span-6 row-span-6' : 'col-span-3 row-span-3'} 
-    rounded-lg bg-zinc-900 overflow-hidden flex justify-center relative group
-  `;
-
-  const priceBoxStyle = ` 
-    ${isHighlighted ? 'bottom-28 right-28' : 'bottom-10 right-10'}
-    absolute h-12 flex items-center gap-2 max-w-[280px] rounded-full border-2 border-zinc-500 bg-black/60 p-1 pl-5
-  `
+  const cardStyle = isHighlighted ? 'col-span-6 row-span-6' : 'col-span-3 row-span-3';
+  const priceBoxStyle = isHighlighted ? 'bottom-28 right-28' : 'bottom-10 right-10';
 
   return (
     <Link
       href={slug}
-      className={cardStyle}
+      className={twMerge("rounded-lg bg-zinc-900 overflow-hidden flex justify-center relative group", cardStyle)}
     >
       <Image
         className="group-hover:scale-105 transition-transform duration-500"
@@ -28,7 +22,7 @@ export default function ProductCard({slug, image, title, price, isHighlighted}: 
         alt=""
       />
 
-      <div className={priceBoxStyle}>
+      <div className={twMerge("absolute h-12 flex items-center gap-2 max-w-[280px] rounded-full border-2 border-zinc-500 bg-black/60 p-1 pl-5", priceBoxStyle)}>
         <span className="text-sm truncate">
           {title}
         </span>
