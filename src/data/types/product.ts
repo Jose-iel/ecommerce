@@ -3,6 +3,7 @@ export interface ProductProps {
   slug: string;
   image: string;
   title: string;
+  description: string;
   price: number;
   isHighlighted?: boolean;
   featured?: boolean;
