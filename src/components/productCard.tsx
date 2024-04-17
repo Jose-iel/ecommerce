@@ -10,7 +10,7 @@ export default function ProductCard({slug, image, title, price, isHighlighted}: 
 
   return (
     <Link
-      href={slug}
+      href={`product/${slug}`}
       className={twMerge("rounded-lg bg-zinc-900 overflow-hidden flex justify-center relative group", cardStyle)}
     >
       <Image
