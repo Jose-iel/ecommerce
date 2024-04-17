@@ -1,6 +1,7 @@
 import ProductCard from "@/components/productCard";
 import { api } from "@/data/api";
 import { ProductProps } from "@/data/types/product";
+import { Metadata } from "next";
 
 async function getFeaturedProducts(): Promise<ProductProps[]> {
   const response = await api("/products/featured", {
@@ -10,6 +11,10 @@ async function getFeaturedProducts(): Promise<ProductProps[]> {
   });
   const products = await response.json();
   return products;
+}
+
+export const metadata: Metadata = {
+  title: 'Home',
 }
 
 export default async function Home() {
